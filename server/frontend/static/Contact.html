@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkturquoise; height: 1in;">
+        <div class="container-fluid">
+            <h2 style="padding-right: 5%;">Dealerships</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: larger;" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card" style="width: 80%; margin: auto; margin-top:5%; padding: 2%;">
+        <div class="banner" name="contact-header">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us for any inquiries or assistance. We're happy to help!</p>
+        </div>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-around; margin-top: 2%;">
+            <div class="card" style="width: 30%; text-align: center; padding: 1rem;">
+                <img class="card-img-top" src="{% static 'phone.png' %}" alt="Phone icon" style="width: 50px; margin: auto;">
+                <div class="card-body">
+                    <h5 class="title">Phone</h5>
+                    <p>📞 +48 123 456 789</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 30%; text-align: center; padding: 1rem;">
+                <img class="card-img-top" src="{% static 'email.png' %}" alt="Email icon" style="width: 50px; margin: auto;">
+                <div class="card-body">
+                    <h5 class="title">Email</h5>
+                    <p>📧 contact@dealership.com</p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 30%; text-align: center; padding: 1rem;">
+                <img class="card-img-top" src="{% static 'location.png' %}" alt="Location icon" style="width: 50px; margin: auto;">
+                <div class="card-body">
+                    <h5 class="title">Address</h5>
+                    <p>📍 ul. Przykładowa 123, 00-000 Warszawa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
