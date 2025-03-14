@@ -143,4 +143,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/build'),
     os.path.join(BASE_DIR, 'frontend/build/static'),
 ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://marcelszelug-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+    # Możesz dodać inne zaufane źródła, jeśli są potrzebne
+]
+
 

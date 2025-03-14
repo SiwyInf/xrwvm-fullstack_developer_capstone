@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
+from .models import CarMake, CarModel
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
+def initiate():
+    # Funkcja inicjalizująca dane (np. dodawanie przykładowych samochodów)
+    pass
 
 @csrf_exempt
 def login_user(request):
@@ -33,8 +38,21 @@ def logout_user(request):
     else:
         return JsonResponse({"error": "No user was logged in."}, status=400)
 
+def get_cars(request):
+    count = CarMake.objects.filter().count()
+    if count == 0:
+        initiate()
+    car_models = CarModel.objects.select_related('car_make')
+    cars = []
+    for car_model in car_models:
+        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+    return JsonResponse({"CarModels": cars})
+
 @csrf_exempt
 def registration(request):
+    if request.user.is_authenticated:
+        return JsonResponse({"error": "User already logged in. Log out first."}, status=400)
+
     try:
         data = json.loads(request.body)
         username = data['userName']
@@ -43,17 +61,13 @@ def registration(request):
         last_name = data['lastName']
         email = data['email']
         
-        # Check if username or email already exists
         if User.objects.filter(username=username).exists():
             return JsonResponse({"error": "Username already exists"}, status=400)
 
         if User.objects.filter(email=email).exists():
             return JsonResponse({"error": "Email already exists"}, status=400)
 
-        # Create a new user
         user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
-        
-        # Automatically log in the newly registered user
         login(request, user)
         
         return JsonResponse({"userName": username, "status": "Authenticated"})
