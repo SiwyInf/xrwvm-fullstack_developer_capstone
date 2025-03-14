@@ -11,5 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('djangoapp/', include('djangoapp.urls')),  # Trasy Django app
     path('dealers/', TemplateView.as_view(template_name="index.html")),  # Jeśli masz osobną stronę dla dealerów
+   path('dealer/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
+        path('postreview/<int:dealer_id>',TemplateView.as_view(template_name="index.html")),
     path('', TemplateView.as_view(template_name="Home.html")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
